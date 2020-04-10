@@ -3,10 +3,11 @@ from matplotlib import pyplot as plt
 from datetime import datetime
 import seaborn as sb
 import numpy as np
-# GMT_TO_HONOLULU_CONVERSION = 0    # to demonstrate the bad effect of not pre-processing
-GMT_TO_HONOLULU_CONVERSION = -10 * 3600 # to change time zone from GMT to Pacific/Honolulu
 
 plt.style.use("bmh")
+
+# GMT_TO_HONOLULU_CONVERSION = 0    # to demonstrate the bad effect of not pre-processing
+GMT_TO_HONOLULU_CONVERSION = -10 * 3600 # to change time zone from GMT to Pacific/Honolulu
 
 raw_data = pd.read_csv("data/SolarPrediction.csv")
 data = raw_data.sort_values("UNIXTime")    # pre-processing
