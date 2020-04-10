@@ -3,7 +3,6 @@ from matplotlib import pyplot as plt
 from datetime import datetime
 import seaborn as sb
 import numpy as np
-
 # GMT_TO_HONOLULU_CONVERSION = 0    # to demonstrate the bad effect of not pre-processing
 GMT_TO_HONOLULU_CONVERSION = -10 * 3600 # to change time zone from GMT to Pacific/Honolulu
 
@@ -55,6 +54,8 @@ for index, row in data.iterrows():
 fig1, ax1 = plt.subplots()
 fig2, ax2 = plt.subplots()
 fig3, ax3 = plt.subplots()
+fig4, ax4 = plt.subplots()
+fig5, ax5 = plt.subplots()
 
 # time_units_1 = np.arange(len(daily_radiation[dates[0]]))
 # time_units_2 = np.arange(len(daily_radiation[dates[30]]))
@@ -91,15 +92,22 @@ ax3.set_xlabel("Pressure (Hg)")
 ax3.set_ylabel("Solar Radiation (W/mm$^2$)")
 ax3.set_title("Solar Radiation vs. Pressure")
 
-ax_corr = plt.axes()
+ax4.scatter(humidity, radiation, s=10, c="green", edgecolor="black", linewidth=0.5, alpha=0.4)
+ax4.set_xlabel("Humidity (%)")
+ax4.set_ylabel("Solar Radiation (W/mm$^2$)")
+ax4.set_title("Solar Radiation vs. Humidity")
+
+ax5.scatter(wind_direction, radiation, s=10, c="green", edgecolor="black", linewidth=0.5, alpha=0.4)
+ax5.set_xlabel("Wind Direction ($o$)")
+ax5.set_ylabel("Solar Radiation (W/mm$^2$)")
+ax5.set_title("Solar Radiation vs. Wind Direction")
+
 sb.heatmap(pearson_corr,
             xticklabels=pearson_corr.columns,
             yticklabels=pearson_corr.columns,
             cmap='RdBu_r',
             annot=True,
-            linewidth=0.5,
-            ax=ax_corr)
-ax_corr.set_title("Pearson Correlation Heat Map")
+            linewidth=0.5)
 
 plt.tight_layout()
 plt.show()
