@@ -81,16 +81,6 @@ ax1.set_ylabel("Solar Radiation (W/mm$^2$)")
 ax1.set_title("Solar Radiation vs. Time of day")
 ax1.legend()
 
-ax = plt.axes()
-sb.heatmap(pearson_corr,
-            xticklabels=pearson_corr.columns,
-            yticklabels=pearson_corr.columns,
-            cmap='RdBu_r',
-            annot=True,
-            linewidth=0.5,
-            ax=ax)
-ax.set_title("Pearson Correlation Heat Map")
-
 ax2.scatter(temperature, radiation, s=10, c="green", edgecolor="black", linewidth=0.5, alpha=0.4)
 ax2.set_xlabel("Temperature (F$^o$)")
 ax2.set_ylabel("Solar Radiation (W/mm$^2$)")
@@ -100,6 +90,16 @@ ax3.scatter(pressure, radiation, s=10, c="green", edgecolor="black", linewidth=0
 ax3.set_xlabel("Pressure (Hg)")
 ax3.set_ylabel("Solar Radiation (W/mm$^2$)")
 ax3.set_title("Solar Radiation vs. Pressure")
+
+ax_corr = plt.axes()
+sb.heatmap(pearson_corr,
+            xticklabels=pearson_corr.columns,
+            yticklabels=pearson_corr.columns,
+            cmap='RdBu_r',
+            annot=True,
+            linewidth=0.5,
+            ax=ax_corr)
+ax_corr.set_title("Pearson Correlation Heat Map")
 
 plt.tight_layout()
 plt.show()
